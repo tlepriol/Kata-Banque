@@ -17,4 +17,8 @@ public class Compte {
         solde=solde-retrait;
     }
 
+    public String[] getTransaction() {
+        return null;
+    }
+
 }

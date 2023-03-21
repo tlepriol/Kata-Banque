@@ -1,5 +1,6 @@
 package com.example.katabanque;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -70,14 +71,16 @@ public class AppTest
         assertEquals(3500, solde);
     }
 
-    /*@Test
-    public void getSoldeGiven1000Retrait2000Return1000(){
+    @Test
+    public void getTransactionGiven0Depot1000Return1Line() {
         // Given
         int solde;
         compte.depot(1000);
+
         // When
-        compte.retrait(2000);
+        String[] transactions = compte.getTransaction();
+
         // Then
-        assertEquals("1000", solde);
-    }*/
+        assertEquals("['21/03/2023 - 1000 - 1000']", transactions);
+    }
 }
