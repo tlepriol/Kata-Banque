@@ -27,9 +27,23 @@ public class AppTest
         Compte compte = new Compte();
 
         //When
-        solde = compte.getSolde();
+        solde = compte.getSolde(2000, 0);
         
         //Then
         assertEquals(2000, solde);
+    }
+
+
+    @Test
+    public void getSoldeAfterDepot3000Return4000(){
+        //Given
+        int solde;
+        Compte compte = new Compte();
+
+        //When
+        solde = compte.getSolde(1000, 3000);
+
+        // Then
+        assertEquals(4000, solde);
     }
 }
