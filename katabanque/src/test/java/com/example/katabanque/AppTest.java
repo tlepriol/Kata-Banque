@@ -16,27 +16,17 @@ import org.junit.Test;
  */
 public class AppTest 
 {
-    private Compte compte;
-    
-    @Before 
-    public void init() {
-        compte = new Compte(new Horloge());
-    }
-
     /**
      * Rigorous Test :-)
      */
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
-    }
-
+  
     @Test
     public void getSoldeGiven2000Return2000()
     {
         //Given
         int solde;
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest);
         compte.depot(2000);
 
         //When
@@ -51,6 +41,8 @@ public class AppTest
     public void getSoldeGiven1000Depot3000Return4000(){
         //Given
         int solde;
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest);
         compte.depot(1000);
         
 
@@ -66,6 +58,8 @@ public class AppTest
     public void getSoldeGiven4000Retrait500Return3500(){
         // Given
         int solde;
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest);
         compte.depot(4000);
 
         // When
@@ -79,42 +73,60 @@ public class AppTest
     @Test
     public void getTransactionGiven0Depot1000Return1Line() {
         // Given
-        int solde;
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest);
         compte.depot(1000);
 
         // When
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals(compte.formatDate(LocalDateTime.now()) + " - 1000 - 1000", transactions.get(0));
+        assertEquals("23/03/2023 14:44:56.123 - 1000 - 1000", transactions.get(0));
     }
 
     @Test
     public void getTransactionGiven0Depot500ReturnCorrectLine() {
         // Given
-        int solde;
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest);
         compte.depot(500);
 
         // When
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals(compte.formatDate(LocalDateTime.now()) + " - 500 - 500", transactions.get(0));
+        assertEquals("23/03/2023 14:44:56.123 - 500 - 500", transactions.get(0));
     }
 
     @Test
     public void getTransactionGiven1000Retrait500ReturnCorrectLines() {
         // Given
-        int solde;
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest);
         compte.depot(1000);
         compte.retrait(500);
+        
 
         // When
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals(compte.formatDate(LocalDateTime.now()) + " - 1000 - 1000", transactions.get(0));
-        assertEquals(compte.formatDate(LocalDateTime.now()) + " - -500 - 500", transactions.get(1));
+        assertEquals("23/03/2023 14:44:56.123 - 1000 - 1000", transactions.get(0));
+        assertEquals("23/03/2023 14:44:56.123 - -500 - 500", transactions.get(1));
+    }
+
+    @Test
+    public void getTransactionGiven300ReturnCorrectLine() {
+        //Given
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest);
+        compte.depot(300);
+
+        //When
+        List<String> transactions = compte.getTransaction();
+
+        //Then
+        assertEquals("23/03/2023 14:44:56.123 - 300 - 300", transactions.get(0));
     }
     
 }

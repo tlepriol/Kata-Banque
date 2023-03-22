@@ -4,10 +4,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Horloge implements HorlogeInterface {
-    
-    public String formatDate(){
+    LocalDateTime now;
+
+    public Horloge() {
+        this.now = LocalDateTime.now();
+    }
+
+    public String getFormattedNow(){
         DateTimeFormatter formateur = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS");
-        return formateur.format(LocalDateTime.now() );
+        return formateur.format( this.now );
     }
     
 }

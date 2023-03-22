@@ -8,15 +8,13 @@ import java.util.List;
 
 public class Compte {
 
-
-
     int solde;
     int depot;
     int retrait;
     List<String> transactions = new ArrayList<>();
-    Horloge horloge;
+    HorlogeInterface horloge;
 
-    public Compte(Horloge horloge) {
+    public Compte(HorlogeInterface horloge) {
         this.horloge = horloge;
     }
 
@@ -26,12 +24,12 @@ public class Compte {
 
     public void depot(int depot) {
         solde=solde+depot;
-        transactions.add(horloge.formatDate() + " - " + depot + " - " + solde);
+        transactions.add(horloge.getFormattedNow() + " - " + depot + " - " + solde);
     }
 
     public void retrait(int retrait) {
         solde=solde-retrait;
-        transactions.add(horloge.formatDate() + " - " + "-" +retrait + " - " + solde);
+        transactions.add(horloge.getFormattedNow() + " - " + "-" +retrait + " - " + solde);
     }
 
     public List<String> getTransaction() {
