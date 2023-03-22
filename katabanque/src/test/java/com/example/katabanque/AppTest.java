@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.Before;
@@ -84,7 +85,7 @@ public class AppTest
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals(LocalDate.now() + " - 1000 - 1000", transactions.get(0));
+        assertEquals(compte.formatDate(LocalDateTime.now()) + " - 1000 - 1000", transactions.get(0));
     }
 
     @Test
@@ -97,7 +98,7 @@ public class AppTest
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals(LocalDate.now() + " - 500 - 500", transactions.get(0));
+        assertEquals(compte.formatDate(LocalDateTime.now()) + " - 500 - 500", transactions.get(0));
     }
 
     @Test
@@ -111,8 +112,8 @@ public class AppTest
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals(LocalDate.now() + " - 1000 - 1000", transactions.get(0));
-        assertEquals(LocalDate.now() + " - -500 - 500", transactions.get(1));
+        assertEquals(compte.formatDate(LocalDateTime.now()) + " - 1000 - 1000", transactions.get(0));
+        assertEquals(compte.formatDate(LocalDateTime.now()) + " - -500 - 500", transactions.get(1));
     }
     
 }
