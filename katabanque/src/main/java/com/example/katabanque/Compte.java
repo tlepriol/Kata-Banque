@@ -13,9 +13,11 @@ public class Compte {
     int retrait;
     List<String> transactions = new ArrayList<>();
     HorlogeInterface horloge;
+    TransactionRepository transactionRepository;
 
-    public Compte(HorlogeInterface horloge) {
+    public Compte(HorlogeInterface horloge, TransactionRepository transactionRepository ) {
         this.horloge = horloge;
+        this.transactionRepository = transactionRepository;
     }
 
     public int getSolde() {

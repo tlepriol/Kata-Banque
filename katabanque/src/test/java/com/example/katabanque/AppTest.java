@@ -25,8 +25,9 @@ public class AppTest
     {
         //Given
         int solde;
+        TransactionRepository transactionRepository = new TransactionRepository();
         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
-        Compte compte = new Compte(horlogeTest);
+        Compte compte = new Compte(horlogeTest, transactionRepository);
         compte.depot(2000);
 
         //When
@@ -41,8 +42,9 @@ public class AppTest
     public void getSoldeGiven1000Depot3000Return4000(){
         //Given
         int solde;
+        TransactionRepository transactionRepository = new TransactionRepository();
         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
-        Compte compte = new Compte(horlogeTest);
+        Compte compte = new Compte(horlogeTest, transactionRepository);
         compte.depot(1000);
         
 
@@ -58,8 +60,9 @@ public class AppTest
     public void getSoldeGiven4000Retrait500Return3500(){
         // Given
         int solde;
+        TransactionRepository transactionRepository = new TransactionRepository();
         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
-        Compte compte = new Compte(horlogeTest);
+        Compte compte = new Compte(horlogeTest, transactionRepository);
         compte.depot(4000);
 
         // When
@@ -73,8 +76,9 @@ public class AppTest
     @Test
     public void getTransactionGiven0Depot1000Return1Line() {
         // Given
+        TransactionRepository transactionRepository = new TransactionRepository();
         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
-        Compte compte = new Compte(horlogeTest);
+        Compte compte = new Compte(horlogeTest, transactionRepository);
         compte.depot(1000);
 
         // When
@@ -87,8 +91,9 @@ public class AppTest
     @Test
     public void getTransactionGiven0Depot500ReturnCorrectLine() {
         // Given
+        TransactionRepository transactionRepository = new TransactionRepository();
         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
-        Compte compte = new Compte(horlogeTest);
+        Compte compte = new Compte(horlogeTest, transactionRepository);
         compte.depot(500);
 
         // When
@@ -101,8 +106,9 @@ public class AppTest
     @Test
     public void getTransactionGiven1000Retrait500ReturnCorrectLines() {
         // Given
+        TransactionRepository transactionRepository = new TransactionRepository();
         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
-        Compte compte = new Compte(horlogeTest);
+        Compte compte = new Compte(horlogeTest, transactionRepository);
         compte.depot(1000);
         compte.retrait(500);
         
@@ -118,8 +124,9 @@ public class AppTest
     @Test
     public void getTransactionGiven300ReturnCorrectLine() {
         //Given
+        TransactionRepository transactionRepository = new TransactionRepository();
         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
-        Compte compte = new Compte(horlogeTest);
+        Compte compte = new Compte(horlogeTest, transactionRepository);
         compte.depot(300);
 
         //When
@@ -127,6 +134,22 @@ public class AppTest
 
         //Then
         assertEquals("23/03/2023 14:44:56.123 - 300 - 300", transactions.get(0));
+    }
+
+    @Test
+    public void getTransactionShouldCallTransactionRepository() {
+        // Given
+        TransactionRepository transactionRepository = new TransactionRepository();
+        HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+        Compte compte = new Compte(horlogeTest, transactionRepository);
+        compte.depot(300);
+
+        // When
+        compte.getTransaction();
+
+        // Then
+        List<String> calls = transactionRepository.getCalls();
+        assertEquals("get - 1", calls.get(0));
     }
     
 }
