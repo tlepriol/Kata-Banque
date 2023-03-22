@@ -83,7 +83,20 @@ public class AppTest
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals("21/03/2023 - 1000 - 1000", transactions.get(0));
+        assertEquals("2023-03-22 - 1000 - 1000", transactions.get(0));
+    }
+
+    @Test
+    public void getTransactionGiven0Depot500ReturnCorrectLine() {
+        // Given
+        int solde;
+        compte.depot(500);
+
+        // When
+        List<String> transactions = compte.getTransaction();
+
+        // Then
+        assertEquals("2023-03-22 - 500 - 500", transactions.get(0));
     }
     
 }
