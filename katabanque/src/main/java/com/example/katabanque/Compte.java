@@ -35,6 +35,7 @@ public class Compte {
     }
 
     public List<String> getTransaction() {
+        transactionRepository.getAllTransactions();
         return transactions;
     }
 

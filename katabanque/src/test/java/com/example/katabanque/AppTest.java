@@ -151,5 +151,22 @@ public class AppTest
         List<String> calls = transactionRepository.getCalls();
         assertEquals("get - 1", calls.get(0));
     }
+
+    @Test
+    public void getTransactionShouldCallTransactionRepositoryTwice() {
+         // Given
+         TransactionRepository transactionRepository = new TransactionRepository();
+         HorlogeTest horlogeTest = new HorlogeTest("23/03/2023 14:44:56.123");
+         Compte compte = new Compte(horlogeTest, transactionRepository);
+         compte.depot(300);
+ 
+         // When
+         compte.getTransaction();
+         compte.getTransaction();
+ 
+         // Then
+         List<String> calls = transactionRepository.getCalls();
+         assertEquals("get - 2", calls.get(0));
+    }
     
 }

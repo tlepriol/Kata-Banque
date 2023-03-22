@@ -5,10 +5,17 @@ import java.util.List;
 
 public class TransactionRepository {
 
+    int counter;
+
     public List<String> getCalls() {
         List<String> calls = new ArrayList<>();
-        calls.add("get - 1");
+        calls.add("get - " + counter);
         return calls;
     }
+
+    public void getAllTransactions() {
+        counter++;
+    }
+
     
 }
