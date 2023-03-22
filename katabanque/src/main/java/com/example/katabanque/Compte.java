@@ -21,6 +21,7 @@ public class Compte {
 
     public void retrait(int retrait) {
         solde=solde-retrait;
+        transactions.add(LocalDate.now() + " - " + "-" +retrait + " - " + solde);
     }
 
     public List<String> getTransaction() {

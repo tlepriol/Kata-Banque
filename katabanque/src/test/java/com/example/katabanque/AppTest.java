@@ -4,6 +4,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.Before;
@@ -83,7 +84,7 @@ public class AppTest
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals("2023-03-22 - 1000 - 1000", transactions.get(0));
+        assertEquals(LocalDate.now() + " - 1000 - 1000", transactions.get(0));
     }
 
     @Test
@@ -96,7 +97,22 @@ public class AppTest
         List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals("2023-03-22 - 500 - 500", transactions.get(0));
+        assertEquals(LocalDate.now() + " - 500 - 500", transactions.get(0));
+    }
+
+    @Test
+    public void getTransactionGiven1000Retrait500ReturnCorrectLines() {
+        // Given
+        int solde;
+        compte.depot(1000);
+        compte.retrait(500);
+
+        // When
+        List<String> transactions = compte.getTransaction();
+
+        // Then
+        assertEquals(LocalDate.now() + " - 1000 - 1000", transactions.get(0));
+        assertEquals(LocalDate.now() + " - -500 - 500", transactions.get(1));
     }
     
 }
