@@ -17,9 +17,10 @@ import org.junit.Test;
 public class AppTest 
 {
     private Compte compte;
+    
     @Before 
     public void init() {
-        compte = new Compte();
+        compte = new Compte(new Horloge());
     }
 
     /**
