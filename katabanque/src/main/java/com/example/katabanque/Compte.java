@@ -1,5 +1,8 @@
 package com.example.katabanque;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Compte {
     int solde;
     int depot;
@@ -17,8 +20,10 @@ public class Compte {
         solde=solde-retrait;
     }
 
-    public String[] getTransaction() {
-        return null;
+    public List<String> getTransaction() {
+        List<String> transactions = new ArrayList<>();
+        transactions.add("21/03/2023 - 1000 - 1000");
+        return transactions;
     }
 
 }

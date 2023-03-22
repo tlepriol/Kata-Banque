@@ -4,6 +4,8 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -78,9 +80,10 @@ public class AppTest
         compte.depot(1000);
 
         // When
-        String[] transactions = compte.getTransaction();
+        List<String> transactions = compte.getTransaction();
 
         // Then
-        assertEquals("['21/03/2023 - 1000 - 1000']", transactions);
+        assertEquals("21/03/2023 - 1000 - 1000", transactions.get(0));
     }
+    
 }
